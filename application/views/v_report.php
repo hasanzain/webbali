@@ -56,6 +56,18 @@
                                 </div>
                             </div>
                             <div class="form-group row">
+                                <label for="example-date-input" class="col-2 col-form-label">Time</label>
+                                <div class="col-10">
+                                    <input class="form-control" type="time" id="example-date-input" name="time">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="example-date-input" class="col-2 col-form-label">Until</label>
+                                <div class="col-10">
+                                    <input class="form-control" type="time" id="example-date-input" name="timeuntil">
+                                </div>
+                            </div>
+                            <div class="form-group row">
                                 <input class="btn btn-primary" type="submit" value="Export Excel">
                             </div>
 

@@ -13,8 +13,6 @@ $(document).ready(function() {
             showGraph7();
             showGraph8();
             showGraph9();
-            showGraph10();
-            showGraph11();
             done();
         }, 500);
     }
@@ -22,24 +20,24 @@ $(document).ready(function() {
     function showGraph1() {
         $.ajax({
             method: "GET",
-            url: "<?= base_url() ?>/suhu_air?limit=60&order=desc&customer=<?= $this->session->userdata('customer'); ?>",
+            url: "<?= base_url() ?>line_r?limit=60&order=desc&customer=<?= $this->session->userdata('customer'); ?>",
             success: function(e) {
                 var nama = [],
                     values = [];
                 for (var i in e) {
                     nama.push(e[i].waktu);
-                    values.push(e[i].nilai);
+                    values.push(e[i].arus);
                 }
-                var ctx = document.getElementById("suhu_air").getContext('2d');
+                var ctx = document.getElementById("arus_line_r").getContext('2d');
                 var panzerChart = new Chart(ctx, {
                     type: 'line',
                     data: {
                         labels: nama.reverse(),
                         datasets: [{
-                            label: "Suhu",
+                            label: "Arus Line 1",
                             data: values.reverse(),
-                            backgroundColor: ['rgba(60,141,188, 0.2)'],
-                            borderColor: ['rgba(60,141,188, 1)']
+                            backgroundColor: ['rgba(222, 52, 70, 0.2)'],
+                            borderColor: ['rgba(222, 52, 70, 1)']
                         }]
                     },
                     options: {
@@ -61,28 +59,30 @@ $(document).ready(function() {
             }
         });
     }
+
+
 
     function showGraph2() {
         $.ajax({
             method: "GET",
-            url: "<?= base_url() ?>/suhu_udara?limit=60&order=desc&customer=<?= $this->session->userdata('customer'); ?>",
+            url: "<?= base_url() ?>line_s?limit=60&order=desc&customer=<?= $this->session->userdata('customer'); ?>",
             success: function(e) {
                 var nama = [],
                     values = [];
                 for (var i in e) {
                     nama.push(e[i].waktu);
-                    values.push(e[i].nilai);
+                    values.push(e[i].arus);
                 }
-                var ctx = document.getElementById("suhu_udara").getContext('2d');
+                var ctx = document.getElementById("arus_line_s").getContext('2d');
                 var panzerChart = new Chart(ctx, {
                     type: 'line',
                     data: {
                         labels: nama.reverse(),
                         datasets: [{
-                            label: "suhu udara",
+                            label: "Arus Line 2",
                             data: values.reverse(),
-                            backgroundColor: ['rgba(70,0,0, 0.2)'],
-                            borderColor: ['rgba(70,0,0, 1)']
+                            backgroundColor: ['rgba(250, 194, 12, 0.2)'],
+                            borderColor: ['rgba(250, 194, 12, 1)']
                         }]
                     },
                     options: {
@@ -105,27 +105,28 @@ $(document).ready(function() {
         });
     }
 
+
     function showGraph3() {
         $.ajax({
             method: "GET",
-            url: "<?= base_url() ?>/kelembaban?limit=60&order=desc&customer=<?= $this->session->userdata('customer'); ?>",
+            url: "<?= base_url() ?>line_t?limit=60&order=desc&customer=<?= $this->session->userdata('customer'); ?>",
             success: function(e) {
                 var nama = [],
                     values = [];
                 for (var i in e) {
                     nama.push(e[i].waktu);
-                    values.push(e[i].nilai);
+                    values.push(e[i].arus);
                 }
-                var ctx = document.getElementById("kelembaban").getContext('2d');
+                var ctx = document.getElementById("arus_line_t").getContext('2d');
                 var panzerChart = new Chart(ctx, {
                     type: 'line',
                     data: {
                         labels: nama.reverse(),
                         datasets: [{
-                            label: "Kelembaban",
+                            label: "Arus Line 3",
                             data: values.reverse(),
-                            backgroundColor: ['rgba(255,165,0, 0.2)'],
-                            borderColor: ['rgba(255,165,0, 1)']
+                            backgroundColor: ['rgba(53, 60, 67, 0.2)'],
+                            borderColor: ['rgba(53, 60, 67, 1)']
                         }]
                     },
                     options: {
@@ -151,24 +152,24 @@ $(document).ready(function() {
     function showGraph4() {
         $.ajax({
             method: "GET",
-            url: "<?= base_url() ?>/tds?limit=60&order=desc&customer=<?= $this->session->userdata('customer'); ?>",
+            url: "<?= base_url() ?>line_r?limit=60&order=desc&customer=<?= $this->session->userdata('customer'); ?>",
             success: function(e) {
                 var nama = [],
                     values = [];
                 for (var i in e) {
                     nama.push(e[i].waktu);
-                    values.push(e[i].nilai);
+                    values.push(e[i].daya);
                 }
-                var ctx = document.getElementById("tds").getContext('2d');
+                var ctx = document.getElementById("daya_line_r").getContext('2d');
                 var panzerChart = new Chart(ctx, {
                     type: 'line',
                     data: {
                         labels: nama.reverse(),
                         datasets: [{
-                            label: "tds",
+                            label: "Daya Line 1",
                             data: values.reverse(),
-                            backgroundColor: ['rgba(240,128,128, 0.2)'],
-                            borderColor: ['rgba(240,128,128, 1)']
+                            backgroundColor: ['rgba(222, 52, 70, 0.2)'],
+                            borderColor: ['rgba(222, 52, 70, 1)']
                         }]
                     },
                     options: {
@@ -190,28 +191,30 @@ $(document).ready(function() {
             }
         });
     }
+
+
 
     function showGraph5() {
         $.ajax({
             method: "GET",
-            url: "<?= base_url() ?>/ph?limit=60&order=desc&customer=<?= $this->session->userdata('customer'); ?>",
+            url: "<?= base_url() ?>line_s?limit=60&order=desc&customer=<?= $this->session->userdata('customer'); ?>",
             success: function(e) {
                 var nama = [],
                     values = [];
                 for (var i in e) {
                     nama.push(e[i].waktu);
-                    values.push(e[i].nilai);
+                    values.push(e[i].daya);
                 }
-                var ctx = document.getElementById("ph").getContext('2d');
+                var ctx = document.getElementById("daya_line_s").getContext('2d');
                 var panzerChart = new Chart(ctx, {
                     type: 'line',
                     data: {
                         labels: nama.reverse(),
                         datasets: [{
-                            label: "ph",
+                            label: "Daya Line 2",
                             data: values.reverse(),
-                            backgroundColor: ['rgba(124,252,0, 0.2)'],
-                            borderColor: ['rgba(124,252,0, 1)']
+                            backgroundColor: ['rgba(250, 194, 12, 0.2)'],
+                            borderColor: ['rgba(250, 194, 12, 1)']
                         }]
                     },
                     options: {
@@ -233,28 +236,29 @@ $(document).ready(function() {
             }
         });
     }
+
 
     function showGraph6() {
         $.ajax({
             method: "GET",
-            url: "<?= base_url() ?>/amonia?limit=60&order=desc&customer=<?= $this->session->userdata('customer'); ?>",
+            url: "<?= base_url() ?>line_t?limit=60&order=desc&customer=<?= $this->session->userdata('customer'); ?>",
             success: function(e) {
                 var nama = [],
                     values = [];
                 for (var i in e) {
                     nama.push(e[i].waktu);
-                    values.push(e[i].nilai);
+                    values.push(e[i].daya);
                 }
-                var ctx = document.getElementById("amonia").getContext('2d');
+                var ctx = document.getElementById("daya_line_t").getContext('2d');
                 var panzerChart = new Chart(ctx, {
                     type: 'line',
                     data: {
                         labels: nama.reverse(),
                         datasets: [{
-                            label: "amonia",
+                            label: "Daya Line 3",
                             data: values.reverse(),
-                            backgroundColor: ['rgba(0,255,127, 0.2)'],
-                            borderColor: ['rgba(0,255,127, 1)']
+                            backgroundColor: ['rgba(53, 60, 67, 0.2)'],
+                            borderColor: ['rgba(53, 60, 67, 1)']
                         }]
                     },
                     options: {
@@ -277,27 +281,29 @@ $(document).ready(function() {
         });
     }
 
+
+
     function showGraph7() {
         $.ajax({
             method: "GET",
-            url: "<?= base_url() ?>/arus_pompa_1?limit=60&order=desc&customer=<?= $this->session->userdata('customer'); ?>",
+            url: "<?= base_url() ?>line_r?limit=60&order=desc&customer=<?= $this->session->userdata('customer'); ?>",
             success: function(e) {
                 var nama = [],
                     values = [];
                 for (var i in e) {
                     nama.push(e[i].waktu);
-                    values.push(e[i].nilai);
+                    values.push(e[i].kwh);
                 }
-                var ctx = document.getElementById("arus_pompa_1").getContext('2d');
+                var ctx = document.getElementById("kwh_line_r").getContext('2d');
                 var panzerChart = new Chart(ctx, {
                     type: 'line',
                     data: {
                         labels: nama.reverse(),
                         datasets: [{
-                            label: "arus pompa 1",
+                            label: "Kwh line r",
                             data: values.reverse(),
-                            backgroundColor: ['rgba(32,178,170, 0.2)'],
-                            borderColor: ['rgba(32,178,170, 1)']
+                            backgroundColor: ['rgba(222, 52, 70, 0.2)'],
+                            borderColor: ['rgba(222, 52, 70, 1)']
                         }]
                     },
                     options: {
@@ -323,24 +329,24 @@ $(document).ready(function() {
     function showGraph8() {
         $.ajax({
             method: "GET",
-            url: "<?= base_url() ?>/arus_pompa_2?limit=60&order=desc&customer=<?= $this->session->userdata('customer'); ?>",
+            url: "<?= base_url() ?>line_s?limit=60&order=desc&customer=<?= $this->session->userdata('customer'); ?>",
             success: function(e) {
                 var nama = [],
                     values = [];
                 for (var i in e) {
                     nama.push(e[i].waktu);
-                    values.push(e[i].nilai);
+                    values.push(e[i].kwh);
                 }
-                var ctx = document.getElementById("arus_pompa_2").getContext('2d');
+                var ctx = document.getElementById("kwh_line_s").getContext('2d');
                 var panzerChart = new Chart(ctx, {
                     type: 'line',
                     data: {
                         labels: nama.reverse(),
                         datasets: [{
-                            label: "arus pompa 2",
+                            label: "Kwh line s",
                             data: values.reverse(),
-                            backgroundColor: ['rgba(0,255,255, 0.2)'],
-                            borderColor: ['rgba(0,255,255, 1)']
+                            backgroundColor: ['rgba(250, 194, 12, 0.2)'],
+                            borderColor: ['rgba(250, 194, 12, 1)']
                         }]
                     },
                     options: {
@@ -366,24 +372,24 @@ $(document).ready(function() {
     function showGraph9() {
         $.ajax({
             method: "GET",
-            url: "<?= base_url() ?>/arus_xpompa_1?limit=60&order=desc&customer=<?= $this->session->userdata('customer'); ?>",
+            url: "<?= base_url() ?>line_t?limit=60&order=desc&customer=<?= $this->session->userdata('customer'); ?>",
             success: function(e) {
                 var nama = [],
                     values = [];
                 for (var i in e) {
                     nama.push(e[i].waktu);
-                    values.push(e[i].nilai);
+                    values.push(e[i].kwh);
                 }
-                var ctx = document.getElementById("arus_xpompa_1").getContext('2d');
+                var ctx = document.getElementById("kwh_line_t").getContext('2d');
                 var panzerChart = new Chart(ctx, {
                     type: 'line',
                     data: {
                         labels: nama.reverse(),
                         datasets: [{
-                            label: "arus xpompa 1",
+                            label: "Kwh line t",
                             data: values.reverse(),
-                            backgroundColor: ['rgba(30,144,255, 0.2)'],
-                            borderColor: ['rgba(30,144,255, 1)']
+                            backgroundColor: ['rgba(53, 60, 67, 0.2)'],
+                            borderColor: ['rgba(53, 60, 67, 1)']
                         }]
                     },
                     options: {
@@ -405,93 +411,6 @@ $(document).ready(function() {
             }
         });
     }
-
-    function showGraph10() {
-        $.ajax({
-            method: "GET",
-            url: "<?= base_url() ?>/arus_xpompa_2?limit=60&order=desc&customer=<?= $this->session->userdata('customer'); ?>",
-            success: function(e) {
-                var nama = [],
-                    values = [];
-                for (var i in e) {
-                    nama.push(e[i].waktu);
-                    values.push(e[i].nilai);
-                }
-                var ctx = document.getElementById("arus_xpompa_2").getContext('2d');
-                var panzerChart = new Chart(ctx, {
-                    type: 'line',
-                    data: {
-                        labels: nama.reverse(),
-                        datasets: [{
-                            label: "arus xpompa 2",
-                            data: values.reverse(),
-                            backgroundColor: ['rgba(255,0,255, 0.2)'],
-                            borderColor: ['rgba(255,0,255, 1)']
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        legend: {
-                            display: true,
-                            position: 'bottom'
-                        },
-                        animation: {
-                            duration: 0
-                        },
-                        hover: {
-                            animationDuration: 0
-                        },
-                        responsiveAnimationDuration: 0
-                    }
-                });
-            }
-        });
-    }
-
-    function showGraph11() {
-        $.ajax({
-            method: "GET",
-            url: "<?= base_url() ?>/uv?limit=60&order=desc&customer=<?= $this->session->userdata('customer'); ?>",
-            success: function(e) {
-                var nama = [],
-                    values = [];
-                for (var i in e) {
-                    nama.push(e[i].waktu);
-                    values.push(e[i].nilai);
-                }
-                var ctx = document.getElementById("uv").getContext('2d');
-                var panzerChart = new Chart(ctx, {
-                    type: 'line',
-                    data: {
-                        labels: nama.reverse(),
-                        datasets: [{
-                            label: "uv",
-                            data: values.reverse(),
-                            backgroundColor: ['rgba(128,0,128, 0.2)'],
-                            borderColor: ['rgba(128,0,128, 1)']
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        legend: {
-                            display: true,
-                            position: 'bottom'
-                        },
-                        animation: {
-                            duration: 0
-                        },
-                        hover: {
-                            animationDuration: 0
-                        },
-                        responsiveAnimationDuration: 0
-                    }
-                });
-            }
-        });
-    }
-
 
 });
 </script>
@@ -518,114 +437,16 @@ $(document).ready(function() {
         <div class="container-fluid">
 
             <div class="row">
-
-                <!--
                 <div class="card card-primary card-outline col-lg-12">
                     <div class="card-header">
                         <h3 class="card-title">
                             <i class="far fa-chart-bar"></i>
-                            Suhu Air
+                            Arus Line 1
                         </h3>
                     </div>
                     <div class="card-body">
                         <div id="grafik">
-                            <canvas id="suhu_air"
-                                style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-                        </div>
-                    </div>
-                  
-                </div>
-
-                <div class="card card-primary card-outline col-lg-12">
-                    <div class="card-header">
-                        <h3 class="card-title">
-                            <i class="far fa-chart-bar"></i>
-                            Suhu Udara
-                        </h3>
-                    </div>
-                    <div class="card-body">
-                        <div id="grafik">
-                            <canvas id="suhu_udara"
-                                style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-                        </div>
-                    </div>
-                 
-                </div>
-
-                <div class="card card-primary card-outline col-lg-12">
-                    <div class="card-header">
-                        <h3 class="card-title">
-                            <i class="far fa-chart-bar"></i>
-                            kelembaban
-                        </h3>
-                    </div>
-                    <div class="card-body">
-                        <div id="grafik">
-                            <canvas id="kelembaban"
-                                style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-                        </div>
-                    </div>
-                    
-                </div>
-
-                <div class="card card-primary card-outline col-lg-12">
-                    <div class="card-header">
-                        <h3 class="card-title">
-                            <i class="far fa-chart-bar"></i>
-                            TDS
-                        </h3>
-                    </div>
-                    <div class="card-body">
-                        <div id="grafik">
-                            <canvas id="tds"
-                                style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-                        </div>
-                    </div>
-                   
-                </div>
-
-                <div class="card card-primary card-outline col-lg-12">
-                    <div class="card-header">
-                        <h3 class="card-title">
-                            <i class="far fa-chart-bar"></i>
-                            PH
-                        </h3>
-                    </div>
-                    <div class="card-body">
-                        <div id="grafik">
-                            <canvas id="ph"
-                                style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-                        </div>
-                    </div>
-                   
-                </div>
-
-                <div class="card card-primary card-outline col-lg-12">
-                    <div class="card-header">
-                        <h3 class="card-title">
-                            <i class="far fa-chart-bar"></i>
-                            Amonia
-                        </h3>
-                    </div>
-                    <div class="card-body">
-                        <div id="grafik">
-                            <canvas id="amonia"
-                                style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-                        </div>
-                    </div>
-                    
-                </div>
--->
-                <div class="card card-primary card-outline col-lg-12">
-                    <div class="card-header">
-                        <h3 class="card-title">
-                            <i class="far fa-chart-bar"></i>
-                            Arus Pompa 1
-                        </h3>
-                    </div>
-                    <div class="card-body">
-                        <div id="grafik">
-                            <canvas id="arus_pompa_1"
+                            <canvas id="arus_line_r"
                                 style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
                         </div>
                     </div>
@@ -636,12 +457,12 @@ $(document).ready(function() {
                     <div class="card-header">
                         <h3 class="card-title">
                             <i class="far fa-chart-bar"></i>
-                            Arus Pompa 2
+                            Arus Line 2
                         </h3>
                     </div>
                     <div class="card-body">
                         <div id="grafik">
-                            <canvas id="arus_pompa_2"
+                            <canvas id="arus_line_s"
                                 style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
                         </div>
                     </div>
@@ -652,51 +473,110 @@ $(document).ready(function() {
                     <div class="card-header">
                         <h3 class="card-title">
                             <i class="far fa-chart-bar"></i>
-                            Arus XPompa 1
+                            Arus Line 3
                         </h3>
                     </div>
                     <div class="card-body">
                         <div id="grafik">
-                            <canvas id="arus_xpompa_1"
+                            <canvas id="arus_line_t"
                                 style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
                         </div>
                     </div>
-                    <!-- /.card-body-->
+                </div>
+
+
+                <div class="card card-primary card-outline col-lg-12">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="far fa-chart-bar"></i>
+                            Daya Line 1
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <div id="grafik">
+                            <canvas id="daya_line_r"
+                                style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="card card-primary card-outline col-lg-12">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="far fa-chart-bar"></i>
+                            Daya Line 2
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <div id="grafik">
+                            <canvas id="daya_line_s"
+                                style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="card card-primary card-outline col-lg-12">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="far fa-chart-bar"></i>
+                            Daya Line 3
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <div id="grafik">
+                            <canvas id="daya_line_t"
+                                style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="card card-primary card-outline col-lg-12">
                     <div class="card-header">
                         <h3 class="card-title">
                             <i class="far fa-chart-bar"></i>
-                            Arus XPompa 2
+                            Kwh Line 1
                         </h3>
                     </div>
                     <div class="card-body">
                         <div id="grafik">
-                            <canvas id="arus_xpompa_2"
+                            <canvas id="kwh_line_r"
                                 style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
                         </div>
                     </div>
-                    <!-- /.card-body-->
                 </div>
 
                 <div class="card card-primary card-outline col-lg-12">
                     <div class="card-header">
                         <h3 class="card-title">
                             <i class="far fa-chart-bar"></i>
-                            UV
+                            Kwh line 2
                         </h3>
                     </div>
                     <div class="card-body">
                         <div id="grafik">
-                            <canvas id="uv"
+                            <canvas id="kwh_line_s"
                                 style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
                         </div>
                     </div>
-                    <!-- /.card-body-->
                 </div>
 
-                <!-- /.col -->
+                <div class="card card-primary card-outline col-lg-12">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="far fa-chart-bar"></i>
+                            Kwh Line 3
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <div id="grafik">
+                            <canvas id="kwh_line_t"
+                                style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
+                        </div>
+                    </div>
+                </div>
+
             </div>
             <!-- /.row -->
 

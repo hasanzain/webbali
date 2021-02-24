@@ -6,7 +6,7 @@ date_default_timezone_set("Asia/Jakarta");
 require APPPATH . '/libraries/REST_Controller.php';
 //use Restserver\Libraries\REST_Controller;
 
-class Line_r extends REST_Controller
+class reset_kwh extends REST_Controller
 {
     /*----------------------------------------CONSTRUCTOR----------------------------------------*/
     function __construct($config = 'rest')
@@ -19,48 +19,24 @@ class Line_r extends REST_Controller
     function index_get()
     {
         $id = $this->get('id');
-        $limit = $this->get('limit');
-        $order = $this->get('order');
-        $customer = $this->get('customer');
-        $lokasi = $this->get('lokasi');
-
-        if ($limit != '') {
-            $this->db->limit($limit);
-        }
-        if ($order != '') {
-            $this->db->order_by('id', $order);
-        }
-        if ($customer != '') {
-            $this->db->where('customer', $customer);
-        }
-        if ($lokasi != '') {
-            $this->db->where('lokasi', $lokasi);
-        }
 
         if ($id == '') {
-            $line_r = $this->db->get('line_r')->result();
+            $reset_kwh = $this->db->get('reset_kwh')->result();
         } else {
             $this->db->where('id', $id);
-            $line_r = $this->db->get('line_r')->result();
+            $reset_kwh = $this->db->get('reset_kwh')->result();
         }
 
-        $this->response($line_r, 200);
+        $this->response($reset_kwh, 200);
     }
 
     function index_post()
     {
         $data = array(
-            'lokasi'    =>   $this->post('lokasi'),
-            'customer' => $this->post('customer'),
-            'tegangan' => $this->post('tegangan'),
-            'arus' => $this->post('arus'),
-            'daya' => $this->post('daya'),
-            'frekuensi' => $this->post('frekuensi'),
-            'kwh' => $this->post('kwh'),
-            'tanggal' => date("Y-m-d"),
-            'waktu' => date("h:i:sa"),
+            'value'    =>   $this->post('value'),
+            'customer'    =>   $this->post('customer')
         );
-        $insert = $this->db->insert('line_r', $data);
+        $insert = $this->db->insert('reset_kwh', $data);
         if ($insert) {
             $this->response($data, 200);
         } else {
@@ -72,16 +48,12 @@ class Line_r extends REST_Controller
     {
         $id = $this->put('id');
         $data = array(
-            'tegangan' => $this->post('tegangan'),
-            'arus' => $this->post('arus'),
-            'daya' => $this->post('daya'),
-            'frekuensi' => $this->post('frekuensi'),
-            'tanggal' => date("Y-m-d"),
-            'waktu' => date("h:i:sa"),
+            'value' => $this->put('value'),
+            'customer'    =>   $this->put('customer')
         );
 
         $this->db->where('id', $id);
-        $update = $this->db->update('line_r', $data);
+        $update = $this->db->update('reset_kwh', $data);
 
         if ($update) {
             $this->response($data, 200);
@@ -97,7 +69,7 @@ class Line_r extends REST_Controller
 
         
         if ($auth == "batman") {
-            $delete = $this->db->empty_table('line_r');
+            $delete = $this->db->empty_table('reset_kwh');
         }else{
             $this->db->where('id', $id);
             $delete = $this->db->delete('arus_pompa_1');

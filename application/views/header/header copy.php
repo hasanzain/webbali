@@ -78,7 +78,6 @@ if ($this->session->userdata('email') == null) {
                with font-awesome or any other icon font library -->
                         <li class="nav-item has-treeview menu-open">
                         </li>
-
                         <li class="nav-item">
                             <a href="<?= base_url('monitoring') ?>" class="nav-link">
                                 <i class="fas fa-list"></i>
@@ -87,9 +86,10 @@ if ($this->session->userdata('email') == null) {
                                 </p>
                             </a>
                         </li>
+
                         <li class="nav-item">
                             <a href="<?= base_url('monitoring/chart') ?>" class="nav-link">
-                                <i class="fas fa-chart-area"></i>
+                                <i class="far fa-chart-bar"></i>
                                 <p>
                                     Grafik
                                 </p>
@@ -97,12 +97,26 @@ if ($this->session->userdata('email') == null) {
                         </li>
                         <li class="nav-item">
                             <a href="<?= base_url('monitoring/report') ?>" class="nav-link">
-                                <i class="fas fa-file-excel"></i>
+                                <i class="fas fa-download"></i>
                                 <p>
                                     Report
                                 </p>
                             </a>
                         </li>
+                        <?php
+if ($this->session->userdata('customer') == 'kalijogo') {
+                        ?>
+                        <li class="nav-item">
+                            <a href="<?= base_url('monitoring/adduser') ?>" class="nav-link">
+                                <i class="fas fa-users"></i>
+                                <p>
+                                    Add User
+                                </p>
+                            </a>
+                        </li>
+                        <?php
+}
+                        ?>
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->

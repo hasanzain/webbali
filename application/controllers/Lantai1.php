@@ -6,7 +6,7 @@ date_default_timezone_set("Asia/Jakarta");
 require APPPATH . '/libraries/REST_Controller.php';
 //use Restserver\Libraries\REST_Controller;
 
-class Line_r extends REST_Controller
+class lantai1 extends REST_Controller
 {
     /*----------------------------------------CONSTRUCTOR----------------------------------------*/
     function __construct($config = 'rest')
@@ -19,48 +19,29 @@ class Line_r extends REST_Controller
     function index_get()
     {
         $id = $this->get('id');
-        $limit = $this->get('limit');
-        $order = $this->get('order');
-        $customer = $this->get('customer');
         $lokasi = $this->get('lokasi');
 
-        if ($limit != '') {
-            $this->db->limit($limit);
-        }
-        if ($order != '') {
-            $this->db->order_by('id', $order);
-        }
-        if ($customer != '') {
-            $this->db->where('customer', $customer);
-        }
-        if ($lokasi != '') {
+        if ($lokasi != ''){
             $this->db->where('lokasi', $lokasi);
         }
-
         if ($id == '') {
-            $line_r = $this->db->get('line_r')->result();
+            $lantai1 = $this->db->get('lantai1')->result();
         } else {
             $this->db->where('id', $id);
-            $line_r = $this->db->get('line_r')->result();
+            $lantai1 = $this->db->get('lantai1')->result();
         }
 
-        $this->response($line_r, 200);
+        $this->response($lantai1, 200);
     }
 
     function index_post()
     {
         $data = array(
             'lokasi'    =>   $this->post('lokasi'),
-            'customer' => $this->post('customer'),
-            'tegangan' => $this->post('tegangan'),
-            'arus' => $this->post('arus'),
-            'daya' => $this->post('daya'),
-            'frekuensi' => $this->post('frekuensi'),
-            'kwh' => $this->post('kwh'),
-            'tanggal' => date("Y-m-d"),
-            'waktu' => date("h:i:sa"),
+            'status'    =>   $this->post('status'),
+            'gambar'    =>   $this->post('gambar'),
         );
-        $insert = $this->db->insert('line_r', $data);
+        $insert = $this->db->insert('lantai1', $data);
         if ($insert) {
             $this->response($data, 200);
         } else {
@@ -71,17 +52,25 @@ class Line_r extends REST_Controller
     function index_put()
     {
         $id = $this->put('id');
-        $data = array(
-            'tegangan' => $this->post('tegangan'),
-            'arus' => $this->post('arus'),
-            'daya' => $this->post('daya'),
-            'frekuensi' => $this->post('frekuensi'),
-            'tanggal' => date("Y-m-d"),
-            'waktu' => date("h:i:sa"),
-        );
+        $lokasi = $this->put('lokasi');
+        $gambar = $this->put('gambar');
+        $status = $this->put('status');
+        
 
-        $this->db->where('id', $id);
-        $update = $this->db->update('line_r', $data);
+        if ($status != null){
+            $data['status'] = $status;
+        }
+        if ($gambar != null){
+            $data['gambar'] = $gambar;
+        }
+
+        if ($id != null) {
+            $this->db->where('id', $id);
+        }
+        if ($lokasi != null) {
+            $this->db->where('lokasi', $lokasi);
+        }
+        $update = $this->db->update('lantai1', $data);
 
         if ($update) {
             $this->response($data, 200);
@@ -97,10 +86,10 @@ class Line_r extends REST_Controller
 
         
         if ($auth == "batman") {
-            $delete = $this->db->empty_table('line_r');
+            $delete = $this->db->empty_table('lantai1');
         }else{
             $this->db->where('id', $id);
-            $delete = $this->db->delete('arus_pompa_1');
+            $delete = $this->db->delete('lantai1');
         }
         if ($delete) {
             $this->response(array('status' => 'success'), 201);

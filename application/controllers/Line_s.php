@@ -6,7 +6,7 @@ date_default_timezone_set("Asia/Jakarta");
 require APPPATH . '/libraries/REST_Controller.php';
 //use Restserver\Libraries\REST_Controller;
 
-class Line_r extends REST_Controller
+class line_s extends REST_Controller
 {
     /*----------------------------------------CONSTRUCTOR----------------------------------------*/
     function __construct($config = 'rest')
@@ -38,13 +38,13 @@ class Line_r extends REST_Controller
         }
 
         if ($id == '') {
-            $line_r = $this->db->get('line_r')->result();
+            $line_s = $this->db->get('line_s')->result();
         } else {
             $this->db->where('id', $id);
-            $line_r = $this->db->get('line_r')->result();
+            $line_s = $this->db->get('line_s')->result();
         }
 
-        $this->response($line_r, 200);
+        $this->response($line_s, 200);
     }
 
     function index_post()
@@ -60,7 +60,7 @@ class Line_r extends REST_Controller
             'tanggal' => date("Y-m-d"),
             'waktu' => date("h:i:sa"),
         );
-        $insert = $this->db->insert('line_r', $data);
+        $insert = $this->db->insert('line_s', $data);
         if ($insert) {
             $this->response($data, 200);
         } else {
@@ -76,12 +76,13 @@ class Line_r extends REST_Controller
             'arus' => $this->post('arus'),
             'daya' => $this->post('daya'),
             'frekuensi' => $this->post('frekuensi'),
+            'kwh' => $this->post('kwh'),
             'tanggal' => date("Y-m-d"),
             'waktu' => date("h:i:sa"),
         );
 
         $this->db->where('id', $id);
-        $update = $this->db->update('line_r', $data);
+        $update = $this->db->update('line_s', $data);
 
         if ($update) {
             $this->response($data, 200);
@@ -97,7 +98,7 @@ class Line_r extends REST_Controller
 
         
         if ($auth == "batman") {
-            $delete = $this->db->empty_table('line_r');
+            $delete = $this->db->empty_table('line_s');
         }else{
             $this->db->where('id', $id);
             $delete = $this->db->delete('arus_pompa_1');

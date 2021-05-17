@@ -20,6 +20,8 @@
 
     <!-- Auto load data -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
@@ -92,14 +94,6 @@ if ($this->session->userdata('email') == null) {
                                 <i class="fas fa-chart-area"></i>
                                 <p>
                                     Grafik
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="<?= base_url('monitoring/report') ?>" class="nav-link">
-                                <i class="fas fa-file-excel"></i>
-                                <p>
-                                    Report
                                 </p>
                             </a>
                         </li>

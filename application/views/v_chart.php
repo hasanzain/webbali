@@ -8,33 +8,30 @@ $(document).ready(function() {
             showGraph2();
             showGraph3();
             showGraph4();
-            showGraph5();
-            showGraph6();
-            showGraph7();
-            showGraph8();
-            showGraph9();
             done();
         }, 500);
     }
 
+
+
     function showGraph1() {
         $.ajax({
             method: "GET",
-            url: "<?= base_url() ?>line_r?limit=60&order=desc&customer=<?= $this->session->userdata('customer'); ?>",
+            url: "<?= base_url() ?>/data_sensor?order=desc&limit=60&lokasi=benoa",
             success: function(e) {
                 var nama = [],
                     values = [];
                 for (var i in e) {
-                    nama.push(e[i].waktu);
-                    values.push(e[i].arus);
+                    nama.push(e[i].jam);
+                    values.push(e[i].suhu);
                 }
-                var ctx = document.getElementById("arus_line_r").getContext('2d');
+                var ctx = document.getElementById("line_suhu").getContext('2d');
                 var panzerChart = new Chart(ctx, {
                     type: 'line',
                     data: {
                         labels: nama.reverse(),
                         datasets: [{
-                            label: "Arus Line 1",
+                            label: "Suhu",
                             data: values.reverse(),
                             backgroundColor: ['rgba(222, 52, 70, 0.2)'],
                             borderColor: ['rgba(222, 52, 70, 1)']
@@ -65,21 +62,21 @@ $(document).ready(function() {
     function showGraph2() {
         $.ajax({
             method: "GET",
-            url: "<?= base_url() ?>line_s?limit=60&order=desc&customer=<?= $this->session->userdata('customer'); ?>",
+            url: "<?= base_url() ?>/data_sensor?order=desc&limit=60&lokasi=benoa",
             success: function(e) {
                 var nama = [],
                     values = [];
                 for (var i in e) {
-                    nama.push(e[i].waktu);
+                    nama.push(e[i].jam);
                     values.push(e[i].arus);
                 }
-                var ctx = document.getElementById("arus_line_s").getContext('2d');
+                var ctx = document.getElementById("line_arus").getContext('2d');
                 var panzerChart = new Chart(ctx, {
                     type: 'line',
                     data: {
                         labels: nama.reverse(),
                         datasets: [{
-                            label: "Arus Line 2",
+                            label: "Arus",
                             data: values.reverse(),
                             backgroundColor: ['rgba(250, 194, 12, 0.2)'],
                             borderColor: ['rgba(250, 194, 12, 1)']
@@ -109,21 +106,21 @@ $(document).ready(function() {
     function showGraph3() {
         $.ajax({
             method: "GET",
-            url: "<?= base_url() ?>line_t?limit=60&order=desc&customer=<?= $this->session->userdata('customer'); ?>",
+            url: "<?= base_url() ?>/data_sensor?order=desc&limit=60&lokasi=benoa",
             success: function(e) {
                 var nama = [],
                     values = [];
                 for (var i in e) {
-                    nama.push(e[i].waktu);
-                    values.push(e[i].arus);
+                    nama.push(e[i].jam);
+                    values.push(e[i].tegangan);
                 }
-                var ctx = document.getElementById("arus_line_t").getContext('2d');
+                var ctx = document.getElementById("line_tegangan").getContext('2d');
                 var panzerChart = new Chart(ctx, {
                     type: 'line',
                     data: {
                         labels: nama.reverse(),
                         datasets: [{
-                            label: "Arus Line 3",
+                            label: "Tegangan",
                             data: values.reverse(),
                             backgroundColor: ['rgba(53, 60, 67, 0.2)'],
                             borderColor: ['rgba(53, 60, 67, 1)']
@@ -152,21 +149,21 @@ $(document).ready(function() {
     function showGraph4() {
         $.ajax({
             method: "GET",
-            url: "<?= base_url() ?>line_r?limit=60&order=desc&customer=<?= $this->session->userdata('customer'); ?>",
+            url: "<?= base_url() ?>/data_sensor?order=desc&limit=60&lokasi=benoa",
             success: function(e) {
                 var nama = [],
                     values = [];
                 for (var i in e) {
-                    nama.push(e[i].waktu);
+                    nama.push(e[i].jam);
                     values.push(e[i].daya);
                 }
-                var ctx = document.getElementById("daya_line_r").getContext('2d');
+                var ctx = document.getElementById("line_daya").getContext('2d');
                 var panzerChart = new Chart(ctx, {
                     type: 'line',
                     data: {
                         labels: nama.reverse(),
                         datasets: [{
-                            label: "Daya Line 1",
+                            label: "Daya",
                             data: values.reverse(),
                             backgroundColor: ['rgba(222, 52, 70, 0.2)'],
                             borderColor: ['rgba(222, 52, 70, 1)']
@@ -192,225 +189,6 @@ $(document).ready(function() {
         });
     }
 
-
-
-    function showGraph5() {
-        $.ajax({
-            method: "GET",
-            url: "<?= base_url() ?>line_s?limit=60&order=desc&customer=<?= $this->session->userdata('customer'); ?>",
-            success: function(e) {
-                var nama = [],
-                    values = [];
-                for (var i in e) {
-                    nama.push(e[i].waktu);
-                    values.push(e[i].daya);
-                }
-                var ctx = document.getElementById("daya_line_s").getContext('2d');
-                var panzerChart = new Chart(ctx, {
-                    type: 'line',
-                    data: {
-                        labels: nama.reverse(),
-                        datasets: [{
-                            label: "Daya Line 2",
-                            data: values.reverse(),
-                            backgroundColor: ['rgba(250, 194, 12, 0.2)'],
-                            borderColor: ['rgba(250, 194, 12, 1)']
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        legend: {
-                            display: true,
-                            position: 'bottom'
-                        },
-                        animation: {
-                            duration: 0
-                        },
-                        hover: {
-                            animationDuration: 0
-                        },
-                        responsiveAnimationDuration: 0
-                    }
-                });
-            }
-        });
-    }
-
-
-    function showGraph6() {
-        $.ajax({
-            method: "GET",
-            url: "<?= base_url() ?>line_t?limit=60&order=desc&customer=<?= $this->session->userdata('customer'); ?>",
-            success: function(e) {
-                var nama = [],
-                    values = [];
-                for (var i in e) {
-                    nama.push(e[i].waktu);
-                    values.push(e[i].daya);
-                }
-                var ctx = document.getElementById("daya_line_t").getContext('2d');
-                var panzerChart = new Chart(ctx, {
-                    type: 'line',
-                    data: {
-                        labels: nama.reverse(),
-                        datasets: [{
-                            label: "Daya Line 3",
-                            data: values.reverse(),
-                            backgroundColor: ['rgba(53, 60, 67, 0.2)'],
-                            borderColor: ['rgba(53, 60, 67, 1)']
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        legend: {
-                            display: true,
-                            position: 'bottom'
-                        },
-                        animation: {
-                            duration: 0
-                        },
-                        hover: {
-                            animationDuration: 0
-                        },
-                        responsiveAnimationDuration: 0
-                    }
-                });
-            }
-        });
-    }
-
-
-
-    function showGraph7() {
-        $.ajax({
-            method: "GET",
-            url: "<?= base_url() ?>line_r?limit=60&order=desc&customer=<?= $this->session->userdata('customer'); ?>",
-            success: function(e) {
-                var nama = [],
-                    values = [];
-                for (var i in e) {
-                    nama.push(e[i].waktu);
-                    values.push(e[i].kwh);
-                }
-                var ctx = document.getElementById("kwh_line_r").getContext('2d');
-                var panzerChart = new Chart(ctx, {
-                    type: 'line',
-                    data: {
-                        labels: nama.reverse(),
-                        datasets: [{
-                            label: "Kwh line r",
-                            data: values.reverse(),
-                            backgroundColor: ['rgba(222, 52, 70, 0.2)'],
-                            borderColor: ['rgba(222, 52, 70, 1)']
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        legend: {
-                            display: true,
-                            position: 'bottom'
-                        },
-                        animation: {
-                            duration: 0
-                        },
-                        hover: {
-                            animationDuration: 0
-                        },
-                        responsiveAnimationDuration: 0
-                    }
-                });
-            }
-        });
-    }
-
-    function showGraph8() {
-        $.ajax({
-            method: "GET",
-            url: "<?= base_url() ?>line_s?limit=60&order=desc&customer=<?= $this->session->userdata('customer'); ?>",
-            success: function(e) {
-                var nama = [],
-                    values = [];
-                for (var i in e) {
-                    nama.push(e[i].waktu);
-                    values.push(e[i].kwh);
-                }
-                var ctx = document.getElementById("kwh_line_s").getContext('2d');
-                var panzerChart = new Chart(ctx, {
-                    type: 'line',
-                    data: {
-                        labels: nama.reverse(),
-                        datasets: [{
-                            label: "Kwh line s",
-                            data: values.reverse(),
-                            backgroundColor: ['rgba(250, 194, 12, 0.2)'],
-                            borderColor: ['rgba(250, 194, 12, 1)']
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        legend: {
-                            display: true,
-                            position: 'bottom'
-                        },
-                        animation: {
-                            duration: 0
-                        },
-                        hover: {
-                            animationDuration: 0
-                        },
-                        responsiveAnimationDuration: 0
-                    }
-                });
-            }
-        });
-    }
-
-    function showGraph9() {
-        $.ajax({
-            method: "GET",
-            url: "<?= base_url() ?>line_t?limit=60&order=desc&customer=<?= $this->session->userdata('customer'); ?>",
-            success: function(e) {
-                var nama = [],
-                    values = [];
-                for (var i in e) {
-                    nama.push(e[i].waktu);
-                    values.push(e[i].kwh);
-                }
-                var ctx = document.getElementById("kwh_line_t").getContext('2d');
-                var panzerChart = new Chart(ctx, {
-                    type: 'line',
-                    data: {
-                        labels: nama.reverse(),
-                        datasets: [{
-                            label: "Kwh line t",
-                            data: values.reverse(),
-                            backgroundColor: ['rgba(53, 60, 67, 0.2)'],
-                            borderColor: ['rgba(53, 60, 67, 1)']
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        legend: {
-                            display: true,
-                            position: 'bottom'
-                        },
-                        animation: {
-                            duration: 0
-                        },
-                        hover: {
-                            animationDuration: 0
-                        },
-                        responsiveAnimationDuration: 0
-                    }
-                });
-            }
-        });
-    }
 
 });
 </script>
@@ -437,16 +215,17 @@ $(document).ready(function() {
         <div class="container-fluid">
 
             <div class="row">
+
                 <div class="card card-primary card-outline col-lg-12">
                     <div class="card-header">
                         <h3 class="card-title">
                             <i class="far fa-chart-bar"></i>
-                            Arus Line 1
+                            Suhu
                         </h3>
                     </div>
                     <div class="card-body">
                         <div id="grafik">
-                            <canvas id="arus_line_r"
+                            <canvas id="line_suhu"
                                 style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
                         </div>
                     </div>
@@ -457,12 +236,12 @@ $(document).ready(function() {
                     <div class="card-header">
                         <h3 class="card-title">
                             <i class="far fa-chart-bar"></i>
-                            Arus Line 2
+                            Arus
                         </h3>
                     </div>
                     <div class="card-body">
                         <div id="grafik">
-                            <canvas id="arus_line_s"
+                            <canvas id="line_arus"
                                 style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
                         </div>
                     </div>
@@ -473,12 +252,12 @@ $(document).ready(function() {
                     <div class="card-header">
                         <h3 class="card-title">
                             <i class="far fa-chart-bar"></i>
-                            Arus Line 3
+                            Tegangan
                         </h3>
                     </div>
                     <div class="card-body">
                         <div id="grafik">
-                            <canvas id="arus_line_t"
+                            <canvas id="line_tegangan"
                                 style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
                         </div>
                     </div>
@@ -489,93 +268,18 @@ $(document).ready(function() {
                     <div class="card-header">
                         <h3 class="card-title">
                             <i class="far fa-chart-bar"></i>
-                            Daya Line 1
+                            Daya
                         </h3>
                     </div>
                     <div class="card-body">
                         <div id="grafik">
-                            <canvas id="daya_line_r"
+                            <canvas id="line_daya"
                                 style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
                         </div>
                     </div>
                 </div>
 
 
-                <div class="card card-primary card-outline col-lg-12">
-                    <div class="card-header">
-                        <h3 class="card-title">
-                            <i class="far fa-chart-bar"></i>
-                            Daya Line 2
-                        </h3>
-                    </div>
-                    <div class="card-body">
-                        <div id="grafik">
-                            <canvas id="daya_line_s"
-                                style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="card card-primary card-outline col-lg-12">
-                    <div class="card-header">
-                        <h3 class="card-title">
-                            <i class="far fa-chart-bar"></i>
-                            Daya Line 3
-                        </h3>
-                    </div>
-                    <div class="card-body">
-                        <div id="grafik">
-                            <canvas id="daya_line_t"
-                                style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card card-primary card-outline col-lg-12">
-                    <div class="card-header">
-                        <h3 class="card-title">
-                            <i class="far fa-chart-bar"></i>
-                            Kwh Line 1
-                        </h3>
-                    </div>
-                    <div class="card-body">
-                        <div id="grafik">
-                            <canvas id="kwh_line_r"
-                                style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card card-primary card-outline col-lg-12">
-                    <div class="card-header">
-                        <h3 class="card-title">
-                            <i class="far fa-chart-bar"></i>
-                            Kwh line 2
-                        </h3>
-                    </div>
-                    <div class="card-body">
-                        <div id="grafik">
-                            <canvas id="kwh_line_s"
-                                style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="card card-primary card-outline col-lg-12">
-                    <div class="card-header">
-                        <h3 class="card-title">
-                            <i class="far fa-chart-bar"></i>
-                            Kwh Line 3
-                        </h3>
-                    </div>
-                    <div class="card-body">
-                        <div id="grafik">
-                            <canvas id="kwh_line_t"
-                                style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
-                        </div>
-                    </div>
-                </div>
 
             </div>
             <!-- /.row -->

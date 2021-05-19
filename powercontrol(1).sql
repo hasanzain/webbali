@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 18, 2021 at 12:39 AM
+-- Generation Time: May 19, 2021 at 12:40 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.4
 
@@ -102,24 +102,25 @@ INSERT INTO `icmp` (`id`, `lokasi`, `icmp_1`, `icmp_2`, `icmp_3`, `icmp_4`, `icm
 
 CREATE TABLE `relay` (
   `id` int(11) NOT NULL,
-  `lokasi` varchar(10) NOT NULL,
-  `relay_1` int(1) NOT NULL,
-  `relay_2` int(1) NOT NULL,
-  `relay_3` int(1) NOT NULL,
-  `relay_4` int(1) NOT NULL,
-  `relay_5` int(1) NOT NULL,
-  `relay_6` int(1) NOT NULL,
-  `relay_7` int(1) NOT NULL,
-  `relay_8` int(1) NOT NULL
+  `nama_relay` varchar(30) NOT NULL,
+  `button` varchar(10) NOT NULL,
+  `status` varchar(11) NOT NULL,
+  `nilai` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `relay`
 --
 
-INSERT INTO `relay` (`id`, `lokasi`, `relay_1`, `relay_2`, `relay_3`, `relay_4`, `relay_5`, `relay_6`, `relay_7`, `relay_8`) VALUES
-(1, 'benoa', 1, 1, 1, 1, 0, 0, 0, 0),
-(2, 'benoa', 1, 1, 1, 1, 0, 1, 1, 0);
+INSERT INTO `relay` (`id`, `nama_relay`, `button`, `status`, `nilai`) VALUES
+(4, 'relay1', 'success', 'ON', 1),
+(5, 'relay2', 'success', 'ON', 1),
+(6, 'relay3', 'danger', 'OFF', 0),
+(7, 'relay4', 'success', 'ON', 1),
+(8, 'relay5', 'danger', 'OFF', 0),
+(9, 'relay6', 'success', 'ON', 1),
+(10, 'relay7', 'success', 'ON', 1),
+(11, 'relay8', 'danger', 'OFF', 0);
 
 --
 -- Indexes for dumped tables
@@ -175,7 +176,7 @@ ALTER TABLE `icmp`
 -- AUTO_INCREMENT for table `relay`
 --
 ALTER TABLE `relay`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

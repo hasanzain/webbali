@@ -40,7 +40,7 @@
                                     </thead>
                                     <tbody>
                                         <?php
-                                        $i=0;
+                                        $i=1;
                                         foreach ($relay->result_array() as $key) {
                                             ?>
                                         <tr>

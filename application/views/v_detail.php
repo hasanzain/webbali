@@ -6,7 +6,14 @@ $(document).ready(function() {
 function live_data() {
     setTimeout(function() {
         data_sensor();
-        relay();
+        relay1();
+        relay2();
+        relay3();
+        relay4();
+        relay5();
+        relay6();
+        relay7();
+        relay8();
         icmp();
         live_data();
     }, 1000);
@@ -26,21 +33,90 @@ function data_sensor() {
     });
 }
 
-function relay() {
+function relay1() {
     $.ajax({
-        url: "<?= base_url() ?>/relay?order=desc&limit=1&lokasi=benoa",
+        url: "<?= base_url() ?>/relay?nama=relay1",
         type: 'GET',
         dataType: 'json',
         success: function(data) {
-            $('#line_relay_1').html(data[0]["relay_1"]);
-            $('#line_relay_2').html(data[0]["relay_2"]);
-            $('#line_relay_3').html(data[0]["relay_3"]);
-            $('#line_relay_4').html(data[0]["relay_4"]);
-            $('#line_relay_5').html(data[0]["relay_5"]);
-            $('#line_relay_6').html(data[0]["relay_6"]);
-            $('#line_relay_7').html(data[0]["relay_7"]);
-            $('#line_relay_8').html(data[0]["relay_8"]);
+            $('#line_relay_1').html("status relay : " + data[0]["status"]);
+        }
+    });
+}
 
+function relay2() {
+    $.ajax({
+        url: "<?= base_url() ?>/relay?nama=relay2",
+        type: 'GET',
+        dataType: 'json',
+        success: function(data) {
+            $('#line_relay_2').html("status relay : " + data[0]["status"]);
+        }
+    });
+}
+
+function relay3() {
+    $.ajax({
+        url: "<?= base_url() ?>/relay?nama=relay3",
+        type: 'GET',
+        dataType: 'json',
+        success: function(data) {
+            $('#line_relay_3').html("status relay : " + data[0]["status"]);
+        }
+    });
+}
+
+function relay4() {
+    $.ajax({
+        url: "<?= base_url() ?>/relay?nama=relay4",
+        type: 'GET',
+        dataType: 'json',
+        success: function(data) {
+            $('#line_relay_4').html("status relay : " + data[0]["status"]);
+        }
+    });
+}
+
+function relay5() {
+    $.ajax({
+        url: "<?= base_url() ?>/relay?nama=relay5",
+        type: 'GET',
+        dataType: 'json',
+        success: function(data) {
+            $('#line_relay_5').html("status relay : " + data[0]["status"]);
+        }
+    });
+}
+
+function relay6() {
+    $.ajax({
+        url: "<?= base_url() ?>/relay?nama=relay6",
+        type: 'GET',
+        dataType: 'json',
+        success: function(data) {
+            $('#line_relay_6').html("status relay : " + data[0]["status"]);
+        }
+    });
+}
+
+function relay7() {
+    $.ajax({
+        url: "<?= base_url() ?>/relay?nama=relay7",
+        type: 'GET',
+        dataType: 'json',
+        success: function(data) {
+            $('#line_relay_7').html("status relay : " + data[0]["status"]);
+        }
+    });
+}
+
+function relay8() {
+    $.ajax({
+        url: "<?= base_url() ?>/relay?nama=relay8",
+        type: 'GET',
+        dataType: 'json',
+        success: function(data) {
+            $('#line_relay_8').html("status relay : " + data[0]["status"]);
         }
     });
 }
@@ -51,14 +127,14 @@ function icmp() {
         type: 'GET',
         dataType: 'json',
         success: function(data) {
-            $('#line_icmp_1').html(data[0]["icmp_1"]);
-            $('#line_icmp_2').html(data[0]["icmp_2"]);
-            $('#line_icmp_3').html(data[0]["icmp_3"]);
-            $('#line_icmp_4').html(data[0]["icmp_4"]);
-            $('#line_icmp_5').html(data[0]["icmp_5"]);
-            $('#line_icmp_6').html(data[0]["icmp_6"]);
-            $('#line_icmp_7').html(data[0]["icmp_7"]);
-            $('#line_icmp_8').html(data[0]["icmp_8"]);
+            $('#line_icmp_1').html("status ICMP : " + data[0]["icmp_1"]);
+            $('#line_icmp_2').html("status ICMP : " + data[0]["icmp_2"]);
+            $('#line_icmp_3').html("status ICMP : " + data[0]["icmp_3"]);
+            $('#line_icmp_4').html("status ICMP : " + data[0]["icmp_4"]);
+            $('#line_icmp_5').html("status ICMP : " + data[0]["icmp_5"]);
+            $('#line_icmp_6').html("status ICMP : " + data[0]["icmp_6"]);
+            $('#line_icmp_7').html("status ICMP : " + data[0]["icmp_7"]);
+            $('#line_icmp_8').html("status ICMP : " + data[0]["icmp_8"]);
 
         }
     });
@@ -155,6 +231,8 @@ function icmp() {
 
                 <div class="col-12 col-sm-6 col-md-3">
                     <div class="info-box">
+
+
                         <span class="info-box-icon bg-dark elevation-1"><i class="fas fa-toggle-on"></i></span>
                         <div class="info-box-content">
                             <span class="info-box-text">Relay 1</span>

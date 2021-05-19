@@ -97,6 +97,14 @@ if ($this->session->userdata('email') == null) {
                                 </p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="<?= base_url('monitoring/relay') ?>" class="nav-link">
+                                <i class="fas fa-toggle-on"></i>
+                                <p>
+                                    Relay
+                                </p>
+                            </a>
+                        </li>
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->

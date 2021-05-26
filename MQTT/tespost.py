@@ -10,6 +10,6 @@ client = mqtt.Client()
 client.connect(mqttBroker) 
 
 
-randNumber = "benoa:223:34:23:32"
-client.publish("data_sensor/post", randNumber)
+randNumber = "2:benoa:Mati:Mati:Mati:Mati:Mati:Mati:Mati:Mati"
+client.publish("icmp/put", randNumber)
 print("Just published " + str(randNumber) + " to topic lokasi")

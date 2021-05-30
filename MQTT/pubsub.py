@@ -76,12 +76,12 @@ def thread_publish():
         time.sleep(1)
 
 def thread_subscribe():
+    client.subscribe("icmp/put")
+    client.on_message=on_message_icmp
     client.subscribe("data_sensor/post")
     client.on_message=on_message_datasensor
     client.subscribe("relay/put")
     client.on_message=on_message_relay
-    client.subscribe("icmp/put")
-    client.on_message=on_message_icmp
 
     
     client.loop_forever()

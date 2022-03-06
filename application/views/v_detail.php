@@ -6,14 +6,6 @@ $(document).ready(function() {
 function live_data() {
     setTimeout(function() {
         data_sensor();
-        relay1();
-        relay2();
-        relay3();
-        relay4();
-        relay5();
-        relay6();
-        relay7();
-        relay8();
         icmp();
         live_data();
     }, 1000);
@@ -33,93 +25,6 @@ function data_sensor() {
     });
 }
 
-function relay1() {
-    $.ajax({
-        url: "<?= base_url() ?>/relay?nama=relay1",
-        type: 'GET',
-        dataType: 'json',
-        success: function(data) {
-            $('#line_relay_1').html("status relay : " + data[0]["status"]);
-        }
-    });
-}
-
-function relay2() {
-    $.ajax({
-        url: "<?= base_url() ?>/relay?nama=relay2",
-        type: 'GET',
-        dataType: 'json',
-        success: function(data) {
-            $('#line_relay_2').html("status relay : " + data[0]["status"]);
-        }
-    });
-}
-
-function relay3() {
-    $.ajax({
-        url: "<?= base_url() ?>/relay?nama=relay3",
-        type: 'GET',
-        dataType: 'json',
-        success: function(data) {
-            $('#line_relay_3').html("status relay : " + data[0]["status"]);
-        }
-    });
-}
-
-function relay4() {
-    $.ajax({
-        url: "<?= base_url() ?>/relay?nama=relay4",
-        type: 'GET',
-        dataType: 'json',
-        success: function(data) {
-            $('#line_relay_4').html("status relay : " + data[0]["status"]);
-        }
-    });
-}
-
-function relay5() {
-    $.ajax({
-        url: "<?= base_url() ?>/relay?nama=relay5",
-        type: 'GET',
-        dataType: 'json',
-        success: function(data) {
-            $('#line_relay_5').html("status relay : " + data[0]["status"]);
-        }
-    });
-}
-
-function relay6() {
-    $.ajax({
-        url: "<?= base_url() ?>/relay?nama=relay6",
-        type: 'GET',
-        dataType: 'json',
-        success: function(data) {
-            $('#line_relay_6').html("status relay : " + data[0]["status"]);
-        }
-    });
-}
-
-function relay7() {
-    $.ajax({
-        url: "<?= base_url() ?>/relay?nama=relay7",
-        type: 'GET',
-        dataType: 'json',
-        success: function(data) {
-            $('#line_relay_7').html("status relay : " + data[0]["status"]);
-        }
-    });
-}
-
-function relay8() {
-    $.ajax({
-        url: "<?= base_url() ?>/relay?nama=relay8",
-        type: 'GET',
-        dataType: 'json',
-        success: function(data) {
-            $('#line_relay_8').html("status relay : " + data[0]["status"]);
-        }
-    });
-}
 
 function icmp() {
     $.ajax({
@@ -127,14 +32,14 @@ function icmp() {
         type: 'GET',
         dataType: 'json',
         success: function(data) {
-            $('#line_icmp_1').html("status ICMP : " + data[0]["icmp_1"]);
-            $('#line_icmp_2').html("status ICMP : " + data[0]["icmp_2"]);
-            $('#line_icmp_3').html("status ICMP : " + data[0]["icmp_3"]);
-            $('#line_icmp_4').html("status ICMP : " + data[0]["icmp_4"]);
-            $('#line_icmp_5').html("status ICMP : " + data[0]["icmp_5"]);
-            $('#line_icmp_6').html("status ICMP : " + data[0]["icmp_6"]);
-            $('#line_icmp_7').html("status ICMP : " + data[0]["icmp_7"]);
-            $('#line_icmp_8').html("status ICMP : " + data[0]["icmp_8"]);
+            $('#relay1').html("status ICMP : " + data[0]["icmp_1"]);
+            $('#relay2').html("status ICMP : " + data[0]["icmp_2"]);
+            $('#relay3').html("status ICMP : " + data[0]["icmp_3"]);
+            $('#relay4').html("status ICMP : " + data[0]["icmp_4"]);
+            $('#relay5').html("status ICMP : " + data[0]["icmp_5"]);
+            $('#relay6').html("status ICMP : " + data[0]["icmp_6"]);
+            $('#relay7').html("status ICMP : " + data[0]["icmp_7"]);
+            $('#relay8').html("status ICMP : " + data[0]["icmp_8"]);
 
         }
     });
@@ -228,143 +133,46 @@ function icmp() {
 
                 <div class="clearfix hidden-md-up"></div>
 
+                <div class="card col-md">
 
-                <div class="col-12 col-sm-6 col-md-3">
-                    <div class="info-box">
+                    <div class="card-header">
+                        <h3 class="card-title">List Relay</h3>
+                    </div>
 
+                    <div class="row">
 
-                        <span class="info-box-icon bg-dark elevation-1"><i class="fas fa-toggle-on"></i></span>
-                        <div class="info-box-content">
-                            <span class="info-box-text">Relay 1</span>
-                            <span class="info-box-number">
-                                <div id="line_relay_1"></div>
-                                <div id="line_icmp_1"></div>
-                            </span>
+                        <?php
+                                        $i=1;
+                                        foreach ($relay->result_array() as $key) {
+                                            ?>
+
+                        <div class="col-12 col-sm-6 col-md-6">
+                            <div class="info-box">
+                                <span class="info-box-icon elevation-1">
+                                    <a
+                                        href="<?= base_url('monitoring/update_relay?id=').$key['id'].'&nilai='.$key['nilai'] ?>">
+                                        <button type="button"
+                                            class="btn btn-<?= $key['button'] ?>"><?= $key['status'] ?></button>
+                                    </a>
+                                </span>
+                                <div class="info-box-content">
+                                    <span class="info-box-text"><?= $key['nama_relay'] ?></span>
+                                    <div id="<?= $key['nama_relay'] ?>"></div>
+                                </div>
+
+                            </div>
                         </div>
+                        <?php
+                                        }
+                                        ?>
 
                     </div>
+
+
+
                 </div>
 
-                <div class="clearfix hidden-md-up"></div>
 
-
-                <div class="col-12 col-sm-6 col-md-3">
-                    <div class="info-box">
-                        <span class="info-box-icon bg-dark elevation-1"><i class="fas fa-toggle-on"></i></span>
-                        <div class="info-box-content">
-                            <span class="info-box-text">Relay 2</span>
-                            <span class="info-box-number">
-                                <div id="line_relay_2"></div>
-                                <div id="line_icmp_2"></div>
-                            </span>
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="clearfix hidden-md-up"></div>
-
-
-                <div class="col-12 col-sm-6 col-md-3">
-                    <div class="info-box">
-                        <span class="info-box-icon bg-dark elevation-1"><i class="fas fa-toggle-on"></i></span>
-                        <div class="info-box-content">
-                            <span class="info-box-text">Relay 3</span>
-                            <span class="info-box-number">
-                                <div id="line_relay_3"></div>
-                                <div id="line_icmp_3"></div>
-                            </span>
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="clearfix hidden-md-up"></div>
-
-
-                <div class="col-12 col-sm-6 col-md-3">
-                    <div class="info-box">
-                        <span class="info-box-icon bg-dark elevation-1"><i class="fas fa-toggle-on"></i></span>
-                        <div class="info-box-content">
-                            <span class="info-box-text">Relay 4</span>
-                            <span class="info-box-number">
-                                <div id="line_relay_4"></div>
-                                <div id="line_icmp_4"></div>
-                            </span>
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="clearfix hidden-md-up"></div>
-
-
-                <div class="col-12 col-sm-6 col-md-3">
-                    <div class="info-box">
-                        <span class="info-box-icon bg-dark elevation-1"><i class="fas fa-toggle-on"></i></span>
-                        <div class="info-box-content">
-                            <span class="info-box-text">Relay 5</span>
-                            <span class="info-box-number">
-                                <div id="line_relay_5"></div>
-                                <div id="line_icmp_5"></div>
-                            </span>
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="clearfix hidden-md-up"></div>
-
-
-                <div class="col-12 col-sm-6 col-md-3">
-                    <div class="info-box">
-                        <span class="info-box-icon bg-dark elevation-1"><i class="fas fa-toggle-on"></i></span>
-                        <div class="info-box-content">
-                            <span class="info-box-text">Relay 6</span>
-                            <span class="info-box-number">
-                                <div id="line_relay_6"></div>
-                                <div id="line_icmp_6"></div>
-                            </span>
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="clearfix hidden-md-up"></div>
-
-
-                <div class="col-12 col-sm-6 col-md-3">
-                    <div class="info-box">
-                        <span class="info-box-icon bg-dark elevation-1"><i class="fas fa-toggle-on"></i></span>
-                        <div class="info-box-content">
-                            <span class="info-box-text">Relay 7</span>
-                            <span class="info-box-number">
-                                <div id="line_relay_7"></div>
-                                <div id="line_icmp_7"></div>
-                            </span>
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="clearfix hidden-md-up"></div>
-
-
-                <div class="col-12 col-sm-6 col-md-3">
-                    <div class="info-box">
-                        <span class="info-box-icon bg-dark elevation-1"><i class="fas fa-toggle-on"></i></span>
-                        <div class="info-box-content">
-                            <span class="info-box-text">Relay 8</span>
-                            <span class="info-box-number">
-                                <div id="line_relay_8"></div>
-                                <div id="line_icmp_8"></div>
-                            </span>
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="clearfix hidden-md-up"></div>
 
             </div>
             <!-- /.content-wrapper -->

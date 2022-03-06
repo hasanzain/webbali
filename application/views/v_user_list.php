@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-primary">DAFTAR ABSENSI</h1>
+                    <h1 class="m-0 text-primary">DAFTAR USER</h1>
                 </div><!-- /.col -->
             </div><!-- /.row -->
         </div><!-- /.container-fluid -->
@@ -28,26 +28,24 @@
                                             <th scope="col">Nama</th>
                                             <th scope="col">NIP</th>
                                             <th scope="col">PANGKAT</th>
-                                            <th scope="col">LOKASI</th>
-                                            <th scope="col">JAM</th>
-                                            <th scope="col">TANGGAL</th>
+                                            <th scope="col">#</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
                                         $i=0;
-                                        foreach ($absensi->result_array() as $key) {
+                                        foreach ($user->result_array() as $key) {
                                             ?>
                                         <tr>
                                             <th scope="row"><?= $i++ ?></th>
                                             <td><?= $key['nama'] ?></td>
                                             <td><?= $key['nip'] ?></td>
                                             <td><?= $key['pangkat'] ?></td>
-                                            <td><a href="https://www.google.com/maps/search/?api=1&query=<?= $key['latitude'] ?>,<?= $key['longitude'] ?>&hl=id"
-                                                    target="blank">Klik Disini</a></td>
-                                            <td><?= $key['jam'] ?></td>
-                                            <td><?= $key['tanggal'] ?></td>
-                                            </a>
+                                            <td>
+                                                <a href="<?= base_url('monitoring/update_user?id=').$key['id'] ?>">
+                                                    <button type="button" class="btn btn-success">Detail</button>
+                                                </a>
+                                            </td>
                                         </tr>
                                         <?php
                                         }

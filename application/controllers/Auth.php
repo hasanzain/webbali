@@ -6,7 +6,7 @@ class Auth extends CI_Controller {
 
     public function index()
     {
-        $this->form_validation->set_rules('email', 'email', 'trim|required|valid_email');
+        $this->form_validation->set_rules('nip', 'nip', 'trim|required');
         $this->form_validation->set_rules('password', 'password', 'trim|required');
         
         
@@ -23,15 +23,16 @@ class Auth extends CI_Controller {
 
     private function _login()
     {
-        $email = $this->input->post('email');
+
+        $nip = $this->input->post('nip');
         $password = $this->input->post('password');
-        $this->db->where('email', $email);
-        $user = $this->db->get('admin')->row_array();
-        if ($user) {
-           if (password_verify($password,$user['password'])) {
-               $data = array(
-                   'email' => $user['email'],
-                   'customer' => $user['customer']
+        $this->db->where('nip', $nip);
+        $this->db->where('password', md5($password));
+        $q = $this->db->get('user');
+        $user = $q ->row_array();
+        if($q->num_rows() == 1){
+            $data = array(
+                   'nip' => $user['nip'],
                  );
                  
                  $this->session->set_userdata( $data);
@@ -40,19 +41,36 @@ class Auth extends CI_Controller {
                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">password salah</div>');
             redirect('auth');
            }
-        }else {
-            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">email tidak terdaftar</div>');
-            redirect('auth');
+
+        // $email = $this->input->post('email');
+        // $password = $this->input->post('password');
+        // $this->db->where('email', $email);
+        // $user = $this->db->get('admin')->row_array();
+        // if ($user) {
+        //    if (password_verify($password,$user['password'])) {
+        //        $data = array(
+        //            'email' => $user['email'],
+        //            'customer' => $user['customer']
+        //          );
+                 
+        //          $this->session->set_userdata( $data);
+        //          redirect('monitoring');
+        //    }else{
+        //        $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">password salah</div>');
+        //     redirect('auth');
+        //    }
+        // }else {
+        //     $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">email tidak terdaftar</div>');
+        //     redirect('auth');
             
-        }
+        // }
         
     }
 
     public function logout()
     {
         
-        $this->session->unset_userdata('email');
-        $this->session->unset_userdata('customer');
+        $this->session->unset_userdata('nip');
         redirect('monitoring');
         
     }

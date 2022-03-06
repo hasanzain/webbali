@@ -1,7 +1,7 @@
 <body class="hold-transition login-page">
     <div class="login-box">
         <div class="login-logo">
-            <b>Smart Power Control</b></a>
+            <b>LOGIN</b></a>
         </div>
         <!-- /.login-logo -->
         <div class="card">
@@ -12,8 +12,8 @@
 
                 <form action="<?= base_url('auth') ?>" method="post">
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" name="email" id="email" placeholder="Email"
-                            value="<?= set_value('email') ?>">
+                        <input type="text" class="form-control" name="nip" id="nip" placeholder="nip"
+                            value="<?= set_value('nip') ?>">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-envelope"></span>

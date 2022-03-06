@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-    <title>Smart Power Meter</title>
+    <title>ABSENSI</title>
 
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="<?= base_url('assets/') ?>fontawesome/css/all.min.css">
@@ -38,7 +38,7 @@
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item d-none d-sm-inline-block">
                     <?php
-if ($this->session->userdata('email') == null) {
+if ($this->session->userdata('nip') == null) {
     
                     ?>
                     <a href="<?= base_url('auth') ?>" class="nav-link"><button type="button"
@@ -65,7 +65,7 @@ if ($this->session->userdata('email') == null) {
             <a href="" class="brand-link">
                 <img src="<?= base_url('assets/') ?>dist/img/AdminLTELogo.png" alt="AdminLTE Logo"
                     class="brand-image img-circle elevation-3" style="opacity: .8">
-                <span class="brand-text font-weight-light">Power Meter</span>
+                <span class="brand-text font-weight-light">ABSENSI</span>
             </a>
 
             <!-- Sidebar -->
@@ -90,18 +90,18 @@ if ($this->session->userdata('email') == null) {
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?= base_url('monitoring/chart') ?>" class="nav-link">
-                                <i class="fas fa-chart-area"></i>
+                            <a href="<?= base_url('monitoring/user_list') ?>" class="nav-link">
+                                <i class="fas fa-list"></i>
                                 <p>
-                                    Grafik
+                                    User List
                                 </p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="<?= base_url('monitoring/relay') ?>" class="nav-link">
-                                <i class="fas fa-toggle-on"></i>
+                            <a href="<?= base_url('monitoring/realtime') ?>" class="nav-link">
+                                <i class="fas fa-list"></i>
                                 <p>
-                                    Relay
+                                    Real Time Location
                                 </p>
                             </a>
                         </li>

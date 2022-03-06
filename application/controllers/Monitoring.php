@@ -6,7 +6,7 @@ class Monitoring extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        if ($this->session->userdata('customer')=='') {
+        if ($this->session->userdata('nip')=='') {
             redirect('auth');
         }
         
@@ -14,8 +14,37 @@ class Monitoring extends CI_Controller
 
     public function index()
     {
+        $this->db->limit(10);
+        $data = array(
+            'absensi' => $this->db->get('absensi')
+        );
+
         $this->load->view('header/header');
-        $this->load->view('v_monitoring');
+        $this->load->view('v_monitoring',$data);
+        $this->load->view('header/footer');
+    }
+
+     public function user_list()
+    {
+        $this->db->limit(10);
+        $data = array(
+            'user' => $this->db->get('user')
+        );
+
+        $this->load->view('header/header');
+        $this->load->view('v_user_list',$data);
+        $this->load->view('header/footer');
+    }
+
+    public function realtime()
+    {
+        $this->db->limit(10);
+        $data = array(
+            'realtime' => $this->db->get('realtime')
+        );
+
+        $this->load->view('header/header');
+        $this->load->view('v_realtime',$data);
         $this->load->view('header/footer');
     }
 
@@ -27,8 +56,11 @@ class Monitoring extends CI_Controller
 
     public function detail()
     {
+         $data = array(
+            'relay' => $this->db->get('relay')
+        );
         $this->load->view('header/header');
-        $this->load->view('v_detail');
+        $this->load->view('v_detail',$data);
         $this->load->view('header/footer');
     }
 
@@ -91,7 +123,7 @@ class Monitoring extends CI_Controller
 
         $this->db->where('id', $id);
         $this->db->update('relay', $object);
-        redirect('monitoring/relay');
+        redirect('monitoring/detail');
         
         
     }
